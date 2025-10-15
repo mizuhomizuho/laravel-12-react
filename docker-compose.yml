@@ -1,0 +1,16 @@
+services:
+
+  perimeter_postgres:
+    container_name: md_postgres
+    image: postgres
+    ports:
+      - "8010:5432"
+    environment:
+      - POSTGRES_DB=md_postgres
+      - POSTGRES_USER=md_postgres
+      - POSTGRES_PASSWORD=md_postgres
+    volumes:
+      - md_postgres_volume:/var/lib/postgresql/data
+
+volumes:
+  md_postgres_volume: null
