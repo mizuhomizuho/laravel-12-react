@@ -10,4 +10,6 @@ class Item extends Model
     use SoftDeletes;
 
     protected $table = 'object_items';
+
+    protected $guarded = [];
 }

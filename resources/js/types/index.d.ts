@@ -41,3 +41,9 @@ export interface User {
     updated_at: string;
     [key: string]: unknown; // This allows for additional properties...
 }
+
+export interface ObjectItem {
+    id: number;
+    title: string;
+    object_type_id: number;
+}

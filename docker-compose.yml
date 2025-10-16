@@ -1,5 +1,4 @@
 services:
-
     md_postgres:
         container_name: md_postgres
         image: postgres
@@ -11,6 +10,5 @@ services:
             - POSTGRES_PASSWORD=md_postgres
         volumes:
             - md_postgres_volume:/var/lib/postgresql/data
-
 volumes:
     md_postgres_volume: null

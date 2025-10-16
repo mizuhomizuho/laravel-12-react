@@ -11,9 +11,10 @@ import {
     SidebarMenuItem,
 } from '@/components/ui/sidebar';
 import { dashboard } from '@/routes';
+import { create } from '@/routes/object/item';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/react';
-import { BookOpen, LayoutGrid } from 'lucide-react';
+import { BookOpen, CirclePlus, LayoutGrid } from 'lucide-react';
 import AppLogo from './app-logo';
 
 const mainNavItems: NavItem[] = [
@@ -21,6 +22,11 @@ const mainNavItems: NavItem[] = [
         title: 'Кабинет',
         href: dashboard(),
         icon: LayoutGrid,
+    },
+    {
+        title: 'Добавить объект',
+        href: create(),
+        icon: CirclePlus,
     },
 ];
 
@@ -39,7 +45,7 @@ export function AppSidebar() {
                 <SidebarMenu>
                     <SidebarMenuItem>
                         <SidebarMenuButton size="lg" asChild>
-                            <Link href={dashboard()} prefetch>
+                            <Link href="/" prefetch>
                                 <AppLogo />
                             </Link>
                         </SidebarMenuButton>

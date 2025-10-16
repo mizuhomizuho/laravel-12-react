@@ -60,26 +60,31 @@ export default function SettingsLayout({ children }: PropsWithChildren) {
                 <aside className="w-full max-w-xl lg:w-48">
                     <nav className="flex flex-col space-y-1 space-x-0">
                         {sidebarNavItems.map((item, index) => (
-                            <Button
-                                key={`${typeof item.href === 'string' ? item.href : item.href.url}-${index}`}
-                                size="sm"
-                                variant="ghost"
-                                asChild
-                                className={cn(`w-full justify-start bg-neutral-900 ${item.buttonClass}`, {
-                                    'bg-muted':
-                                        currentPath ===
-                                        (typeof item.href === 'string'
-                                            ? item.href
-                                            : item.href.url),
-                                })}
-                            >
-                                <Link href={item.href}>
-                                    {item.icon && (
-                                        <item.icon className="h-4 w-4" />
+                            <div className="bg-neutral-100 dark:bg-neutral-700 rounded-md">
+                                <Button
+                                    key={`${typeof item.href === 'string' ? item.href : item.href.url}-${index}`}
+                                    size="sm"
+                                    variant="ghost"
+                                    asChild
+                                    className={cn(
+                                        `w-full justify-start hover:bg-neutral-200 dark:hover:bg-accent ${item.buttonClass}`,
+                                        {
+                                            'bg-neutral-200 dark:bg-muted':
+                                                currentPath ===
+                                                (typeof item.href === 'string'
+                                                    ? item.href
+                                                    : item.href.url),
+                                        },
                                     )}
-                                    {item.title}
-                                </Link>
-                            </Button>
+                                >
+                                    <Link href={item.href}>
+                                        {item.icon && (
+                                            <item.icon className="h-4 w-4" />
+                                        )}
+                                        {item.title}
+                                    </Link>
+                                </Button>
+                            </div>
                         ))}
                     </nav>
                 </aside>
