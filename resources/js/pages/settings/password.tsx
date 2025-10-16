@@ -31,8 +31,10 @@ export default function Password() {
             <SettingsLayout>
                 <div className="space-y-6">
                     <HeadingSmall
-                        title="Update password"
-                        description="Ensure your account is using a long, random password to stay secure"
+                        title="Обновление пароля"
+                        description="Для обеспечения безопасности убедитесь,
+                            что для вашей учетной записи используется длинный
+                            случайный пароль."
                     />
 
                     <Form
@@ -61,7 +63,7 @@ export default function Password() {
                             <>
                                 <div className="grid gap-2">
                                     <Label htmlFor="current_password">
-                                        Current password
+                                        Текущий пароль
                                     </Label>
 
                                     <Input
@@ -71,7 +73,7 @@ export default function Password() {
                                         type="password"
                                         className="mt-1 block w-full"
                                         autoComplete="current-password"
-                                        placeholder="Current password"
+                                        placeholder="Текущий пароль"
                                     />
 
                                     <InputError
@@ -81,7 +83,7 @@ export default function Password() {
 
                                 <div className="grid gap-2">
                                     <Label htmlFor="password">
-                                        New password
+                                        Текущий пароль
                                     </Label>
 
                                     <Input
@@ -91,7 +93,7 @@ export default function Password() {
                                         type="password"
                                         className="mt-1 block w-full"
                                         autoComplete="new-password"
-                                        placeholder="New password"
+                                        placeholder="Текущий пароль"
                                     />
 
                                     <InputError message={errors.password} />
@@ -99,7 +101,7 @@ export default function Password() {
 
                                 <div className="grid gap-2">
                                     <Label htmlFor="password_confirmation">
-                                        Confirm password
+                                        Подтвердите пароль
                                     </Label>
 
                                     <Input
@@ -108,7 +110,7 @@ export default function Password() {
                                         type="password"
                                         className="mt-1 block w-full"
                                         autoComplete="new-password"
-                                        placeholder="Confirm password"
+                                        placeholder="Подтвердите пароль"
                                     />
 
                                     <InputError
@@ -121,7 +123,7 @@ export default function Password() {
                                         disabled={processing}
                                         data-test="update-password-button"
                                     >
-                                        Save password
+                                        Сохранить пароль
                                     </Button>
 
                                     <Transition
@@ -132,7 +134,7 @@ export default function Password() {
                                         leaveTo="opacity-0"
                                     >
                                         <p className="text-sm text-neutral-600">
-                                            Saved
+                                            Сохранен
                                         </p>
                                     </Transition>
                                 </div>

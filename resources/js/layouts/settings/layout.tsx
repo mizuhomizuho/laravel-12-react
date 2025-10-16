@@ -10,26 +10,34 @@ import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/react';
 import { type PropsWithChildren } from 'react';
 
-const sidebarNavItems: NavItem[] = [
+interface NavItemSidebar extends NavItem {
+    buttonClass: string;
+}
+
+const sidebarNavItems: NavItemSidebar[] = [
     {
-        title: 'Profile',
+        title: 'Профиль',
         href: edit(),
         icon: null,
+        buttonClass: '',
     },
     {
-        title: 'Password',
+        title: 'Пароль',
         href: editPassword(),
         icon: null,
+        buttonClass: '',
     },
     {
-        title: 'Two-Factor Auth',
+        title: 'Двухфакторная аутентификация',
         href: show(),
         icon: null,
+        buttonClass: 'whitespace-normal h-auto pt-1 pb-2 leading-5',
     },
     {
-        title: 'Appearance',
+        title: 'Внешний вид',
         href: editAppearance(),
         icon: null,
+        buttonClass: '',
     },
 ];
 
@@ -44,8 +52,8 @@ export default function SettingsLayout({ children }: PropsWithChildren) {
     return (
         <div className="px-4 py-6">
             <Heading
-                title="Settings"
-                description="Manage your profile and account settings"
+                title="Настройки"
+                description="Управляйте своим профилем и настройками учетной записи"
             />
 
             <div className="flex flex-col lg:flex-row lg:space-x-12">
@@ -57,7 +65,7 @@ export default function SettingsLayout({ children }: PropsWithChildren) {
                                 size="sm"
                                 variant="ghost"
                                 asChild
-                                className={cn('w-full justify-start', {
+                                className={cn(`w-full justify-start bg-neutral-900 ${item.buttonClass}`, {
                                     'bg-muted':
                                         currentPath ===
                                         (typeof item.href === 'string'

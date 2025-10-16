@@ -19,9 +19,7 @@ return new class extends Migration
             $table->softDeletes();
 
             $table->unsignedBigInteger('object_type_id')->index();
-//            $table->index('object_type_id', 'object_item_object_type_idx');
-            $table->foreign('object_type_id', 'object_item_object_type_fk')
-                ->on('object_types')->references('id');
+            $table->foreign('object_type_id')->on('object_types')->references('id');
         });
     }
 

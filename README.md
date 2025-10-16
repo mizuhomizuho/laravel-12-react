@@ -1,12 +1,12 @@
 
-## Run:
+## Main commands:
 
 ```shell
 make up
 ```
 
 ```shell
-make fresh # !!!
+make fresh # !!! The database will be recreated, all data will be lost.
 ```
 
 ## Useful commands:
@@ -22,10 +22,6 @@ php artisan make:migration create_access_user_groups_table
 
 php artisan make:factory Object/TypeFactory
 php artisan make:factory Access/GroupFactory
-
-php artisan migrate
-php artisan migrate:fresh # !!!
-php artisan migrate --seed
 ```
 
 ## Created the project like this:
@@ -43,5 +39,6 @@ sudo apt install php-xml php-pgsql
 composer global require laravel/installer
 export PATH="$HOME/.config/composer/vendor/bin:$PATH"
 laravel new md
+php artisan migrate
 
 ```

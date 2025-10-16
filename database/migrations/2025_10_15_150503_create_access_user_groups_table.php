@@ -16,10 +16,8 @@ return new class extends Migration
 
             $table->unsignedBigInteger('user_id')->index();
             $table->unsignedBigInteger('access_group_id')->index();
-            $table->foreign('user_id', 'user_access_group_user_fk')
-                ->on('users')->references('id');
-            $table->foreign('access_group_id', 'user_access_group_access_group_fk')
-                ->on('access_groups')->references('id');
+            $table->foreign('user_id')->on('users')->references('id');
+            $table->foreign('access_group_id')->on('access_groups')->references('id');
 
             $table->timestamps();
         });

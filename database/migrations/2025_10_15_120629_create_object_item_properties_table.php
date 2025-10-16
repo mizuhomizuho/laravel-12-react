@@ -16,10 +16,8 @@ return new class extends Migration
 
             $table->unsignedBigInteger('object_item_id')->index();
             $table->unsignedBigInteger('object_property_id')->index();
-            $table->foreign('object_item_id', 'object_item_object_property_object_item_fk')
-                ->on('object_items')->references('id');
-            $table->foreign('object_property_id', 'object_item_object_property_object_property_fk')
-                ->on('object_properties')->references('id');
+            $table->foreign('object_item_id')->on('object_items')->references('id');
+            $table->foreign('object_property_id')->on('object_properties')->references('id');
 
             $table->jsonb('value');
 

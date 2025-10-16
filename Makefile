@@ -2,7 +2,8 @@
 .PHONY: up
 up:
 	docker compose up -d
-	composer run dev
+	export NVM_DIR="$$HOME/.nvm"; \. "$$NVM_DIR/nvm.sh"; nvm use 22; \
+	node -v && composer run dev
 
 .PHONY: fresh
 fresh:
