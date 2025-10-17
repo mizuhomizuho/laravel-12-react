@@ -27,4 +27,12 @@ class StoreRequest extends FormRequest
             'object_type_id' => 'required|integer|exists:object_types,id',
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'title.required' => 'Поле «Имя объекта» является обязательным.',
+            'object_type_id.required' => 'Поле «Тип объекта» является обязательным.',
+        ];
+    }
 }

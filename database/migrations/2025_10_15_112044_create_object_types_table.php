@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
 
             $table->string('title');
-            $table->string('code', 16)->unique()->index();
+            $table->string('code', 32)->unique()->index();
 
             $table->timestamps();
 

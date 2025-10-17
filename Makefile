@@ -12,9 +12,10 @@ fresh:
 
 .PHONY: rebuild_cache
 rebuild_cache:
-	php artisan config:cache      # Кэширует настройки из .env
-	php artisan route:cache       # Кэширует маршруты
-	php artisan view:cache        # Кэширует скомпилированные Blade-шаблоны
-	php artisan event:cache       # Кэширует события и слушатели (опционально)
+	php artisan optimize:clear
+	php artisan config:cache
+	php artisan event:cache
+	php artisan route:cache
+	php artisan view:cache
 	php artisan route:list | grep object
 

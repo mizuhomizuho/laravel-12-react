@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers\Object\Item;
 
-use App\Http\Controllers\Controller;
 use App\Http\Requests\Object\Item\StoreRequest;
 use App\Models\Object\Item;
 
-class StoreController extends Controller
+class StoreController extends BaseController
 {
     public function __invoke(StoreRequest $request)
     {

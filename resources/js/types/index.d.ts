@@ -47,3 +47,9 @@ export interface ObjectItem {
     title: string;
     object_type_id: number;
 }
+
+export interface ObjectType {
+    id: number;
+    title: string;
+    code: string;
+}

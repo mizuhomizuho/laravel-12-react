@@ -5,14 +5,21 @@ namespace Database\Seeders;
 use App\Models\Access\Group as AccessGroupModel;
 use App\Models\Object\Type as ObjectTypeModel;
 use App\Models\User;
-use App\Services\Access\Group\Service as AccessGroupService;
 use App\Services\Object\Type\Service as ObjectTypeService;
+use App\Services\Access\Group\Service as AccessGroupService;
 use Illuminate\Database\Seeder;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class DatabaseSeeder extends Seeder
 {
+    public function __construct(
+        protected ObjectTypeService  $objectTypeService,
+        protected AccessGroupService $accessGroupService,
+    )
+    {
+    }
+
     /**
      * Seed the application's database.
      */
@@ -31,7 +38,9 @@ class DatabaseSeeder extends Seeder
             ]
         );
 
-        ObjectTypeModel::factory()->count(count((new ObjectTypeService())->getSeedItems()))->create();
-        AccessGroupModel::factory()->count(count((new AccessGroupService())->getSeedItems()))->create();
+//        dd($this->objectTypeService->getSeedItems());
+
+        ObjectTypeModel::factory()->count(count($this->objectTypeService->getSeedItems()))->create();
+        AccessGroupModel::factory()->count(count($this->accessGroupService->getSeedItems()))->create();
     }
 }

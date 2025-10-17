@@ -1,7 +1,7 @@
 import Form from '@/components/object/item/form';
 import AppLayout from '@/layouts/app-layout';
 import { create } from '@/routes/object/item';
-import { type BreadcrumbItem, ObjectItem } from '@/types';
+import { type BreadcrumbItem, ObjectItem, ObjectType } from '@/types';
 import { Head } from '@inertiajs/react';
 
 const pageTitle = 'Добавление объекта';
@@ -13,14 +13,14 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ];
 
-export default function Edit({ item }: { item: ObjectItem }) {
+export default function Edit({ item, types }: { item: ObjectItem, types: ObjectType[] }) {
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title={pageTitle} />
             <div className="p-4">
                 <div className="rounded-xl border border-sidebar-border/70 dark:border-sidebar-border">
                     <div className="p-4">
-                        <Form item={item} />
+                        <Form item={item} types={types} />
                     </div>
                 </div>
             </div>

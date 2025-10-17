@@ -64,7 +64,7 @@ export default function Welcome() {
                                             <span className="h-1.5 w-1.5 rounded-full bg-[#dbdbd7] dark:bg-[#3E3E3A]" />
                                         </span>
                                     </span>
-                                    <span>Ресторан</span>
+                                    <span>Рестораны</span>
                                 </li>
                                 <li className="relative flex items-center gap-4 py-2 before:absolute before:top-0 before:bottom-1/2 before:left-[0.4rem] before:border-l before:border-[#e3e3e0] dark:before:border-[#3E3E3A]">
                                     <span className="relative bg-white py-1 dark:bg-[#161615]">
@@ -72,7 +72,7 @@ export default function Welcome() {
                                             <span className="h-1.5 w-1.5 rounded-full bg-[#dbdbd7] dark:bg-[#3E3E3A]" />
                                         </span>
                                     </span>
-                                    <span>Фотограф</span>
+                                    <span>Фотографы</span>
                                 </li>
                                 <li className="relative flex items-center gap-4 py-2 before:absolute before:top-0 before:bottom-1/2 before:left-[0.4rem] before:border-l before:border-[#e3e3e0] dark:before:border-[#3E3E3A]">
                                     <span className="relative bg-white py-1 dark:bg-[#161615]">

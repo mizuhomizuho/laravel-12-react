@@ -31,7 +31,7 @@ https://lucide.dev/icons/
 ```shell
 php artisan make:model Object/Type -m
 php artisan make:migration create_object_item_properties_table
-php artisan make:controller Object/Item/EditController
+php artisan make:controller Object/Item/BaseController
 php artisan make:request Object/Item/StoreRequest
 ```
 

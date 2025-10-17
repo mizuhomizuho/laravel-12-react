@@ -2,7 +2,7 @@
 
 namespace Database\Factories\Object;
 
-use App\Services\Object\Type\Service;
+use App\Services\Object\Type\Service as ObjectTypeService;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -10,7 +10,15 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class TypeFactory extends Factory
 {
+    private ObjectTypeService $objectTypeService;
+
     private int $definitionIteration = 0;
+
+    public function __construct()
+    {
+        $this->objectTypeService = new ObjectTypeService();
+        parent::__construct(...func_get_args());
+    }
 
     /**
      * Define the model's default state.
@@ -19,7 +27,7 @@ class TypeFactory extends Factory
      */
     public function definition(): array
     {
-        $types = (new Service())->getSeedItems();
+        $types = $this->objectTypeService->getSeedItems();
         $item = $types[$this->definitionIteration];
         $this->definitionIteration++;
         return $item;

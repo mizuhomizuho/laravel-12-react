@@ -2,7 +2,7 @@
 
 namespace Database\Factories\Access;
 
-use App\Services\Access\Group\Service;
+use App\Services\Access\Group\Service as AccessGroupService;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -10,7 +10,15 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class GroupFactory extends Factory
 {
+    private AccessGroupService $accessGroupService;
+
     private int $definitionIteration = 0;
+
+    public function __construct()
+    {
+        $this->accessGroupService = new AccessGroupService();
+        parent::__construct(...func_get_args());
+    }
 
     /**
      * Define the model's default state.
@@ -19,7 +27,7 @@ class GroupFactory extends Factory
      */
     public function definition(): array
     {
-        $types = (new Service())->getSeedItems();
+        $types = $this->accessGroupService->getSeedItems();
         $item = $types[$this->definitionIteration];
         $this->definitionIteration++;
         return $item;
