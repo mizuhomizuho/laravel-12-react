@@ -1,52 +1,37 @@
-import { useCallback, useState } from 'react';
-import { useDropzone } from 'react-dropzone';
+import { InputErrorMessageType } from '@/components/input-error';
+import {
+    removeFile,
+    useMultiImageUpload,
+} from '@/hooks/object/item/multi-image-upload';
+import { Dispatch, SetStateAction } from 'react';
 
-interface UploadFile extends File {
-    preview: string;
-}
-
-export default function MultiImageUpload() {
-    const [files, setFiles] = useState<UploadFile[]>([]);
-
-    const onDrop = useCallback((acceptedFiles: File[]) => {
-
-        console.log(acceptedFiles, 44442)
-
-        const newFiles: UploadFile[] = acceptedFiles.map((file) =>
-            Object.assign(file, {
-                preview: URL.createObjectURL(file),
-            }),
-        );
-
-        setFiles((prev) => [...prev, ...newFiles]);
-    }, []);
-
-    const { getRootProps, getInputProps, isDragActive } = useDropzone({
-        accept: { 'image/*': [] },
-        multiple: true,
-        onDrop,
-    });
-
-    const removeFile = (name: string) => {
-        setFiles((prev) => prev.filter((file) => file.name !== name));
-    };
+export default function MultiImageUpload({
+    name,
+    id,
+    setMultiImageUploadErrors,
+    maxFiles,
+}: {
+    name: string;
+    id: string;
+    setMultiImageUploadErrors: Dispatch<SetStateAction<InputErrorMessageType>>;
+    maxFiles: number;
+}) {
+    const { files, setFiles, getRootProps, getInputProps, isDragActive } =
+        useMultiImageUpload(setMultiImageUploadErrors, maxFiles);
 
     return (
         <div>
-            {/* Dropzone area */}
             <div
                 {...getRootProps()}
-                className={`${isDragActive ? 'bg-gray-100' : 'bg-white'} cursor-pointer rounded-lg border-2 border-dashed border-gray-400 p-7.5 text-center`}
+                className={`${isDragActive ? 'bg-gray-100 dark:bg-neutral-800' : 'bg-white dark:bg-neutral-900'} cursor-pointer rounded-lg border-2 border-dashed border-gray-400 p-7.5 text-center`}
             >
-                <input {...getInputProps()} />
+                <input {...getInputProps()} name={name} id={id} />
                 {isDragActive ? (
                     <p>Отпустите файлы сюда...</p>
                 ) : (
                     <p>Перетащите сюда изображения или кликните для выбора</p>
                 )}
             </div>
-
-            {/* Preview */}
             <div className="mt-5 grid grid-cols-[repeat(auto-fill,minmax(120px,1fr))] gap-2.5">
                 {files.map((file) => (
                     <div
@@ -59,7 +44,13 @@ export default function MultiImageUpload() {
                             className="h-[100px] w-full object-cover"
                         />
                         <button
-                            onClick={() => removeFile(file.name)}
+                            onClick={() =>
+                                removeFile(
+                                    file.name,
+                                    setFiles,
+                                    setMultiImageUploadErrors,
+                                )
+                            }
                             className="absolute top-[5px] right-[5px] h-[24px] w-[24px] cursor-pointer rounded-lg border-0 bg-[rgba(0,0,0,0.6)] text-white"
                         >
                             ×

@@ -17,6 +17,5 @@
 #/opt/php83/bin/php artisan view:cache
 #/opt/php83/bin/php artisan optimize
 
-#export PATH=/opt/php83/bin:$PATH
-#npm run build
+#export PATH=/opt/php83/bin:$PATH && npm run build
 

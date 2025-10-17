@@ -1,5 +1,5 @@
 import StoreController from '@/actions/App/Http/Controllers/Object/Item/StoreController';
-import InputError from '@/components/input-error';
+import InputError, { InputErrorMessageType } from '@/components/input-error';
 import MultiImageUpload from '@/components/object/item/multi-image-upload';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -26,6 +26,8 @@ export default function Form({
     const [selectedObjectTypeId, setSelectedObjectTypeId] = useState<
         null | string
     >(null);
+    const [multiImageUploadErrors, setMultiImageUploadErrors] =
+        useState<InputErrorMessageType>('');
 
     useEffect(() => {
         if (item) {
@@ -37,6 +39,8 @@ export default function Form({
         types && selectedObjectTypeId
             ? types.find((item) => item.id === +selectedObjectTypeId)
             : null;
+
+    const maxFiles = 8;
 
     return (
         <ReactForm
@@ -100,14 +104,43 @@ export default function Form({
                         <InputError className="mt-2" message={errors.title} />
                     </div>
 
-                    {currentType?.code === 'photographer' ? 'xxx' : null}
+                    {currentType?.code === 'photographer' ? 'photographer !!!' : null}
 
-                    <MultiImageUpload />
+                    <div className="grid gap-2">
+                        <Label htmlFor="multi_image_upload">
+                            Фотографии объекта
+                        </Label>
+                        <MultiImageUpload
+                            name="multi_image_upload[]"
+                            id="multi_image_upload"
+                            maxFiles={maxFiles}
+                            setMultiImageUploadErrors={
+                                setMultiImageUploadErrors
+                            }
+                        />
+                        <div className="mt-2">
+                            <InputError message={multiImageUploadErrors} />
+                        </div>
+                        <InputError
+                            className="mt-2"
+                            message={errors['multi_image_upload']}
+                        />
+                        {[...Array(maxFiles)].map((_, index) => (
+                            <InputError
+                                key={index}
+                                className="mt-2"
+                                message={errors[`multi_image_upload.${index}`]}
+                            />
+                        ))}
+                    </div>
+
+                    {/*<input type={'file'} multiple={true} name={'multi_image_upload'} />*/}
 
                     <div className="flex items-center gap-4">
                         <Button
                             disabled={processing}
                             data-test="update-profile-button"
+                            onClick={() => setMultiImageUploadErrors('')}
                         >
                             Сохранить
                         </Button>
