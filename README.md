@@ -29,10 +29,11 @@ https://lucide.dev/icons/
 ## Useful commands:
 
 ```shell
-php artisan make:model Object/Type -m
+php artisan make:model Test/Item/MainModel -m
+php artisan make:factory Test/Item/MainModelFactory
+php artisan make:controller Test/Item/BaseController
+php artisan make:request Test/Item/StoreRequest
 php artisan make:migration create_object_item_properties_table
-php artisan make:controller Object/Item/BaseController
-php artisan make:request Object/Item/StoreRequest
 ```
 
 ## Created the project like this:

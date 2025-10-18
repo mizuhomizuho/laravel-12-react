@@ -18,7 +18,6 @@ export default function MultiImageUpload({
 }) {
     const { files, setFiles, getRootProps, getInputProps, isDragActive } =
         useMultiImageUpload(setMultiImageUploadErrors, maxFiles);
-
     return (
         <div>
             <div

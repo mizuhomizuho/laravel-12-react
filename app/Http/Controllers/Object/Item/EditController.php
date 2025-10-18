@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Object\Item;
 
-use App\Models\Object\Item;
+use App\Models\Object\Item\MainModel;
 use Inertia\Inertia;
 
-class EditController extends BaseController
+final class EditController extends BaseController
 {
-    public function __invoke(Item $item)
+    public function __invoke(MainModel $item)
     {
         return Inertia::render('object/item/edit', [
             'item' => [
@@ -15,7 +15,7 @@ class EditController extends BaseController
                 'title' => $item->title,
                 'object_type_id' => $item->object_type_id,
             ],
-            'types' => $this->typeService->getMainItems(),
+            'types' => $this->typeMainService->getItems(),
         ]);
     }
 }

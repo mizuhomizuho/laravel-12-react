@@ -1,22 +1,22 @@
 <?php
 
-namespace Database\Factories\Access;
+namespace Database\Factories\Object\Type;
 
-use App\Services\Access\Group\Service as AccessGroupService;
+use App\Services\Object\Type\FactoryService as ObjectTypeFactoryService;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Access\Group>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Object\Type\MainModel>
  */
-class GroupFactory extends Factory
+class MainModelFactory extends Factory
 {
-    private AccessGroupService $accessGroupService;
+    private ObjectTypeFactoryService $objectTypeFactoryService;
 
     private int $definitionIteration = 0;
 
     public function __construct()
     {
-        $this->accessGroupService = new AccessGroupService();
+        $this->objectTypeFactoryService = new ObjectTypeFactoryService();
         parent::__construct(...func_get_args());
     }
 
@@ -27,7 +27,7 @@ class GroupFactory extends Factory
      */
     public function definition(): array
     {
-        $types = $this->accessGroupService->getSeedItems();
+        $types = $this->objectTypeFactoryService->getSeedItems();
         $item = $types[$this->definitionIteration];
         $this->definitionIteration++;
         return $item;

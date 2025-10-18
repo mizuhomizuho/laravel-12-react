@@ -30,11 +30,10 @@ class DevLock
             )
         ) {
             Cookie::queue($variable, $variable, time() + 3600 * 24 * 888);
-        } else {
-            echo 'Сайт на реконструкции...';
-            exit;
+            return $next($request);
         }
 
-        return $next($request);
+        echo 'Сайт на реконструкции...';
+        exit;
     }
 }

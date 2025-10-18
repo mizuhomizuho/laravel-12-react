@@ -1,7 +1,7 @@
 import Form from '@/components/object/item/form';
 import AppLayout from '@/layouts/app-layout';
 import { create } from '@/routes/object/item';
-import { type BreadcrumbItem, ObjectItem, ObjectType } from '@/types';
+import { type BreadcrumbItem, ObjectType } from '@/types';
 import { Head } from '@inertiajs/react';
 
 const pageTitle = 'Добавление объекта';

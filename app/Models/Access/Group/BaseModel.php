@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Models\Access;
+namespace App\Models\Access\Group;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Group extends Model
+abstract class BaseModel extends Model
 {
     use HasFactory, SoftDeletes;
 

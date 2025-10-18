@@ -99,7 +99,7 @@ export const onDropRejected = (
             type: 'message',
             text: `Файл: "${el.file.name}".`,
         });
-        el.errors.forEach((reason, i) => {
+        el.errors.forEach((reason) => {
             messages.push({
                 type: 'error',
                 text: `Причина: "${reason.message}".`,

@@ -2,10 +2,8 @@
 
 namespace App\Services\Access\Group;
 
-class Service
+final class FactoryService extends BaseService
 {
-    private const GROUP_ADMIN = 'admin';
-
     public function getSeedItems(): array
     {
         return [[
