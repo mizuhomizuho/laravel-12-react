@@ -2,14 +2,13 @@
 
 namespace App\Services\Object\Type;
 
-use App\Models\Object\Type\MainModel;
+use App\Models\Object\Type\MainModel as TypeModel;
 
 abstract class BaseService
 {
-    protected MainModel $mainModel;
-
-    public function __construct()
+    public function __construct(
+        protected TypeModel $typeModel = new TypeModel(),
+    )
     {
-        $this->mainModel = new MainModel();
     }
 }

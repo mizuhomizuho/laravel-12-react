@@ -12,14 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('object_properties', function (Blueprint $table) {
+
+            $table->softDeletes();
+
             $table->id();
 
             $table->string('title');
             $table->string('code', 64)->unique()->index();
 
             $table->timestamps();
-
-            $table->softDeletes();
         });
     }
 

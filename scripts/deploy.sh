@@ -9,6 +9,7 @@
 #/opt/php83/bin/php /usr/local/bin/composer install
 #/opt/php83/bin/php artisan key:generate
 #/opt/php83/bin/php artisan migrate --seed
+#/opt/php83/bin/php artisan storage:link
 
 #/opt/php83/bin/php artisan optimize:clear
 #/opt/php83/bin/php artisan config:cache

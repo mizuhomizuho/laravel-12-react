@@ -33,6 +33,7 @@ php artisan make:model Test/Item/MainModel -m
 php artisan make:factory Test/Item/MainModelFactory
 php artisan make:controller Test/Item/BaseController
 php artisan make:request Test/Item/StoreRequest
+php artisan make:resource Test/Item/ItemResource
 php artisan make:migration create_object_item_properties_table
 ```
 

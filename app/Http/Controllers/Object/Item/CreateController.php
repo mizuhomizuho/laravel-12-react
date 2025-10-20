@@ -9,7 +9,7 @@ final class CreateController extends BaseController
     public function __invoke()
     {
         return Inertia::render('object/item/create', [
-            'types' => $this->typeMainService->getItems(),
+            'types' => $this->itemService->getMainTypes(),
         ]);
     }
 }

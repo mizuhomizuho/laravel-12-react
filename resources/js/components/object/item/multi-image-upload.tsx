@@ -1,4 +1,4 @@
-import { InputErrorMessageType } from '@/components/input-error';
+import { InputErrorMessage } from '@/components/input-error';
 import {
     removeFile,
     useMultiImageUpload,
@@ -13,7 +13,7 @@ export default function MultiImageUpload({
 }: {
     name: string;
     id: string;
-    setMultiImageUploadErrors: Dispatch<SetStateAction<InputErrorMessageType>>;
+    setMultiImageUploadErrors: Dispatch<SetStateAction<InputErrorMessage>>;
     maxFiles: number;
 }) {
     const { files, setFiles, getRootProps, getInputProps, isDragActive } =

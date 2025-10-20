@@ -12,14 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('object_items', function (Blueprint $table) {
+
+            $table->softDeletes();
+
             $table->id();
             $table->string('title');
             $table->timestamps();
 
-            $table->softDeletes();
-
             $table->unsignedBigInteger('object_type_id')->index();
             $table->foreign('object_type_id')->on('object_types')->references('id');
+
         });
     }
 

@@ -1,19 +1,19 @@
 import { cn } from '@/lib/utils';
 import { type HTMLAttributes, JSX } from 'react';
 
-export type InputErrorListMessageType = {
+export type InputErrorListMessage = {
     text: string;
     type: 'message' | 'error';
 };
 
-export type InputErrorMessageType = string | string[] | InputErrorListMessageType[];
+export type InputErrorMessage = string | string[] | InputErrorListMessage[];
 
 export default function InputError({
     message,
     className = '',
     ...props
 }: HTMLAttributes<HTMLParagraphElement> & {
-    message?: InputErrorMessageType;
+    message?: InputErrorMessage;
 }) {
     const errorClasses = `text-sm text-red-600 dark:text-red-400`;
 

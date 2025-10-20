@@ -12,11 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('access_user_groups', function (Blueprint $table) {
+
+            $table->softDeletes();
+
             $table->id();
 
             $table->unsignedBigInteger('user_id')->index();
-            $table->unsignedBigInteger('access_group_id')->index();
             $table->foreign('user_id')->on('users')->references('id');
+
+            $table->unsignedBigInteger('access_group_id')->index();
             $table->foreign('access_group_id')->on('access_groups')->references('id');
 
             $table->timestamps();

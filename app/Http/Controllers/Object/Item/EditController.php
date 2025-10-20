@@ -15,7 +15,7 @@ final class EditController extends BaseController
                 'title' => $item->title,
                 'object_type_id' => $item->object_type_id,
             ],
-            'types' => $this->typeMainService->getItems(),
+            'types' => $this->typeService->getMainItems(),
         ]);
     }
 }

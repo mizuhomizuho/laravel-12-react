@@ -1,5 +1,5 @@
 import StoreController from '@/actions/App/Http/Controllers/Object/Item/StoreController';
-import InputError, { InputErrorMessageType } from '@/components/input-error';
+import InputError, { InputErrorMessage } from '@/components/input-error';
 import MultiImageUpload from '@/components/object/item/multi-image-upload';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -27,7 +27,7 @@ export default function Form({
         null | string
     >(null);
     const [multiImageUploadErrors, setMultiImageUploadErrors] =
-        useState<InputErrorMessageType>('');
+        useState<InputErrorMessage>('');
 
     useEffect(() => {
         if (item) {
@@ -107,12 +107,12 @@ export default function Form({
                     {currentType?.code === 'photographer' ? 'photographer !!!' : null}
 
                     <div className="grid gap-2">
-                        <Label htmlFor="multi_image_upload">
+                        <Label htmlFor="image">
                             Фотографии объекта
                         </Label>
                         <MultiImageUpload
-                            name="multi_image_upload[]"
-                            id="multi_image_upload"
+                            name="image[]"
+                            id="image"
                             maxFiles={maxFiles}
                             setMultiImageUploadErrors={
                                 setMultiImageUploadErrors
@@ -123,18 +123,18 @@ export default function Form({
                         </div>
                         <InputError
                             className="mt-2"
-                            message={errors['multi_image_upload']}
+                            message={errors['image']}
                         />
                         {[...Array(maxFiles)].map((_, index) => (
                             <InputError
                                 key={index}
                                 className="mt-2"
-                                message={errors[`multi_image_upload.${index}`]}
+                                message={errors[`image.${index}`]}
                             />
                         ))}
                     </div>
 
-                    {/*<input type={'file'} multiple={true} name={'multi_image_upload'} />*/}
+                    {/*<input type={'file'} multiple={true} name={'image'} />*/}
 
                     <div className="flex items-center gap-4">
                         <Button

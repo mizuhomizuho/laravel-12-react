@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\Object\Item;
 
 use App\Http\Controllers\Controller;
-use App\Services\Object\Type\MainService;
+use App\Services\Object\Item\MainService as ItemService;
 
 abstract class BaseController extends Controller
 {
     public function __construct(
-        protected MainService $typeMainService,
+        protected ItemService $itemService,
     )
     {
     }

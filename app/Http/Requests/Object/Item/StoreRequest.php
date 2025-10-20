@@ -11,11 +11,6 @@ class StoreRequest extends FormRequest
      */
     public function authorize(): bool
     {
-
-
-//        dd($this->file('multi_image_upload'),
-//            $this->hasFile('multi_image_upload'));
-
 //        return false;
         return true;
     }
@@ -30,11 +25,8 @@ class StoreRequest extends FormRequest
         return [
             'title' => 'required|string|max:255',
             'object_type_id' => 'required|integer|exists:object_types,id',
-//            'multi_image_upload' => ['required',
-////                'array', 'max:8',
-//            ],
-            'multi_image_upload' => ['required', 'array', 'max:8'],
-            'multi_image_upload.*' => [
+            'image' => ['array', 'max:8'],
+            'image.*' => [
                 'file',
                 'mimes:jpg,jpeg,png',
                 'max:2048',

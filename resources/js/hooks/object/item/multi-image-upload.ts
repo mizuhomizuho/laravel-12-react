@@ -1,9 +1,9 @@
 import {
-    InputErrorListMessageType,
-    InputErrorMessageType,
+    InputErrorListMessage,
+    InputErrorMessage,
 } from '@/components/input-error';
 import { Dispatch, SetStateAction, useCallback, useState } from 'react';
-import { FileRejection, useDropzone } from 'react-dropzone';
+import { DropEvent, FileRejection, useDropzone } from 'react-dropzone';
 
 export interface UploadFile extends File {
     preview: string;
@@ -11,7 +11,7 @@ export interface UploadFile extends File {
 }
 
 export const useMultiImageUpload = (
-    setMultiImageUploadErrors: Dispatch<SetStateAction<InputErrorMessageType>>,
+    setMultiImageUploadErrors: Dispatch<SetStateAction<InputErrorMessage>>,
     maxFiles: number,
 ) => {
     const [files, setFiles] = useState<UploadFile[]>([]);
@@ -30,8 +30,8 @@ export const useMultiImageUpload = (
         maxSize: 2 * 1024 * 1024,
         maxFiles,
         onDrop,
-        onDropRejected: (rejections) =>
-            onDropRejected(rejections, setMultiImageUploadErrors),
+        onDropRejected: (rejections, e) =>
+            onDropRejected(e, rejections, setMultiImageUploadErrors),
     });
 
     return {
@@ -74,6 +74,8 @@ export const onDropUseCallback = async (
             }
         }
 
+        console.log([...prevFiles, ...newFilesFiltered], 22222222);
+
         return [...prevFiles, ...newFilesFiltered];
     });
 };
@@ -81,32 +83,63 @@ export const onDropUseCallback = async (
 export const removeFile = (
     name: string,
     setFiles: Dispatch<SetStateAction<UploadFile[]>>,
-    setMultiImageUploadErrors: Dispatch<SetStateAction<InputErrorMessageType>>,
+    setMultiImageUploadErrors: Dispatch<SetStateAction<InputErrorMessage>>,
 ) => {
     setMultiImageUploadErrors('');
     setFiles((prev: UploadFile[]) => prev.filter((file) => file.name !== name));
 };
 
-export const onDropRejected = (
+export const onDropRejected = async (
+    e: DropEvent,
     rejections: FileRejection[],
-    setMultiImageUploadErrors: Dispatch<SetStateAction<InputErrorMessageType>>,
+    setMultiImageUploadErrors: Dispatch<SetStateAction<InputErrorMessage>>,
 ) => {
-    const messages: InputErrorListMessageType[] = [
+    const messages: InputErrorListMessage[] = [
         { type: 'error', text: 'Отклонённые файлы:' },
     ];
-    rejections.forEach((el) => {
+    for (const rejectionsKey in rejections) {
+        const rejectionItem = rejections[rejectionsKey];
+        addFileErrors(messages, rejectionItem);
+        await removeRejectionFiles(rejectionItem, e);
+    }
+    setMultiImageUploadErrors(messages);
+};
+
+const addFileErrors = (
+    messages: InputErrorListMessage[],
+    rejection: FileRejection,
+) => {
+    messages.push({
+        type: 'message',
+        text: `Файл: "${rejection.file.name}".`,
+    });
+    rejection.errors.forEach((reason) => {
         messages.push({
-            type: 'message',
-            text: `Файл: "${el.file.name}".`,
-        });
-        el.errors.forEach((reason) => {
-            messages.push({
-                type: 'error',
-                text: `Причина: "${reason.message}".`,
-            });
+            type: 'error',
+            text: `Причина: "${reason.message}".`,
         });
     });
-    setMultiImageUploadErrors(messages);
+};
+
+const removeRejectionFiles = async (
+    rejection: FileRejection,
+    e: DropEvent,
+) => {
+    const rejectionHash = await getFileHash(rejection.file);
+    const fileInput = (e as Event).target as HTMLInputElement;
+    if (!fileInput.files) {
+        return;
+    }
+    const dataTransfer = new DataTransfer();
+    for (let i = 0; i < fileInput.files.length; i++) {
+        if (!(
+            fileInput.files[i].name === rejection.file.name &&
+            rejectionHash === (await getFileHash(fileInput.files[i]))
+        )) {
+            dataTransfer.items.add(fileInput.files[i]);
+        }
+    }
+    fileInput.files = dataTransfer.files;
 };
 
 const getFileHash = async (file: File, algorithm: string = 'SHA-256') => {

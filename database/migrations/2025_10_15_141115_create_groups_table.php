@@ -12,14 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('access_groups', function (Blueprint $table) {
+
+            $table->softDeletes();
+
             $table->id();
 
             $table->string('title');
             $table->string('code', 16)->unique()->index();
 
             $table->timestamps();
-
-            $table->softDeletes();
         });
     }
 
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('groups');
+        Schema::dropIfExists('access_groups');
     }
 };
