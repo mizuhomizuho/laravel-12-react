@@ -3,7 +3,7 @@
 
 ## Screenshots
 
-<img src="https://github.com/mizuhomizuho/todojs/blob/master/screenshots/2025-10-21_10-42.png" alt="">
+<img src="./blob/master/screenshots/2025-10-21_10-42.png" alt="">
 
 
 ```shell
