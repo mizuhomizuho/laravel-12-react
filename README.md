@@ -3,7 +3,7 @@
 
 ## Screenshots
 
-<img src="./blob/master/screenshots/2025-10-21_10-42.png" alt="">
+<img src="https://github.com/mizuhomizuho/laravel-12-react/blob/master/screenshots/2025-10-21_10-42.png" alt="">
 
 
 ```shell
